@@ -1,21 +1,42 @@
-import React from 'react';
-import { useSelector } from 'react-redux'
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
 import FishRow from '../FishRow/FishRow'
 import styles from './FishesList.module.css'
 import Container from 'react-bootstrap/Container'
-
-const selectFishes = state => state.fishes
+import { fetchFishes } from '../../services/fishes/fishesSlice';
 
 const FishesList = () => {
-  const fishes = useSelector(selectFishes)
-  const listItems = fishes.map((fish, index) => {
-    return <FishRow key={index} fish={fish} />
-  })
+  const dispatch = useDispatch()
+  const fishesFetchingStatus = useSelector(state => state.fishes.fetchingStatus);
+  const fishes = useSelector(state => state.fishes.data)
+  const error = useSelector(state => state.fishes.error)
 
+  useEffect(() => {
+    if (fishesFetchingStatus === 'idle') {
+      dispatch(fetchFishes())
+    } 
+  }, [fishesFetchingStatus, dispatch])
+  
+  let content 
+  if (fishesFetchingStatus === 'loading') {
+    content = <div> Please wait, fishes are swimming towards here </div>
+  } else if (fishesFetchingStatus === 'succeeded') {
+    const listItems = fishes.map((fish, index) => {
+      return <FishRow key={index} fish={fish} />
+    })
+    content = (
+      <Container>
+        {listItems}
+      </Container>
+    )
+  } else if (fishesFetchingStatus === 'failed') {
+    content = <div> {error} </div>
+  }
+  
   return (
-    <Container className={styles.FishesList} data-testid="FishesList">
-      {listItems}
-    </Container>
+    <div className={styles.FishesList} data-testid="FishesList">
+      {content}
+    </div>
   )
 };
 

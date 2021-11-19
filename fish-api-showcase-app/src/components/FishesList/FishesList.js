@@ -8,7 +8,7 @@ import { fetchFishes } from '../../services/fishes/fishesSlice';
 const FishesList = () => {
   const dispatch = useDispatch()
   const fishesFetchingStatus = useSelector(state => state.fishes.fetchingStatus);
-  const fishes = useSelector(state => state.fishes.data)
+  const displayedFishes = useSelector(state => state.pagination.currentIndexes.map(index => state.fishes.data[index]))
   const error = useSelector(state => state.fishes.error)
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const FishesList = () => {
   if (fishesFetchingStatus === 'loading') {
     content = <div> Please wait, fishes are swimming towards here </div>
   } else if (fishesFetchingStatus === 'succeeded') {
-    const listItems = fishes.map((fish, index) => {
+    const listItems = displayedFishes.map((fish, index) => {
       return <FishRow key={index} fish={fish} />
     })
     content = (
@@ -38,6 +38,6 @@ const FishesList = () => {
       {content}
     </div>
   )
-};
+}
 
-export default FishesList;
+export default FishesList

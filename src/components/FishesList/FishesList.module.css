@@ -1,1 +1,6 @@
-.FishesList {}
+.table {
+    border: 1px solid #E2E2E2;
+}
+.headerRow {
+    font-weight: bold;
+}

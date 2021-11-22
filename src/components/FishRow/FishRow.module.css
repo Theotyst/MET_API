@@ -1,1 +1,26 @@
-.FishRow {}
+.FishRow:nth-child(even) {
+    background-color: #E2E2E2;
+} 
+
+.FishRow{
+    vertical-align: middle;
+}
+.FishRow:hover{
+    background-color: lightblue;
+}
+
+.FishRow.active {
+    border: 2px solid lightblue;
+}
+
+.avatar {
+    height: 5em;
+}
+.avatar img{ 
+    max-width: 100%;
+    max-height: 100%;
+    padding: 10px;
+}
+
+.details {
+}

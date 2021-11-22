@@ -1,13 +1,13 @@
 import React from 'react';
 import FishesList from './components/FishesList/FishesList'
 import './App.css';
-import Pagination from './components/Pagination/Pagination'
+import PaginationComponent from './components/PaginationComponent/PaginationComponent'
 
 function App() {
   return (
     <div className="App">
         <FishesList />
-        <Pagination />
+        <PaginationComponent />
     </div>
   );
 }

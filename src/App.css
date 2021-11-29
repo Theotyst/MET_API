@@ -1,0 +1,14 @@
+.app {
+    background-color: #F3F5F9;
+}
+
+.app h1{
+    text-align: center;
+    padding: 50px;
+    font-family: Garamond;
+}
+
+.app .pagination-component{
+    margin: 0 auto;
+    max-width: 500px;
+}

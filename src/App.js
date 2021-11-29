@@ -5,9 +5,10 @@ import PaginationComponent from './components/PaginationComponent/PaginationComp
 
 function App() {
   return (
-    <div className="App">
-        <FishesList />
-        <PaginationComponent />
+    <div className="app">
+        <h1> FISH API SHOWCASE </h1>
+        <FishesList/>
+        <PaginationComponent/>
     </div>
   );
 }

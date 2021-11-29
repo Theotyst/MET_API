@@ -1,6 +1,6 @@
-.table {
-    border: 1px solid #E2E2E2;
-}
 .headerRow {
+    padding: 10px;
+    margin: 0 10px -20px 10px;
+    font-family: Garamond;
     font-weight: bold;
 }

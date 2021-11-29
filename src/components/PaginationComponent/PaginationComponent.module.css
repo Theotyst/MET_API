@@ -1,0 +1,14 @@
+.paginationContainer{
+    display: flex;
+    justify-content: center;
+}
+
+.numberOfItemsSelect {
+    max-width: 80px;
+    height: 38px;
+    margin-left: 35px;
+    margin-right: 10px;
+}
+.numberOfItemsLabel {
+    padding-top: 6px;
+}

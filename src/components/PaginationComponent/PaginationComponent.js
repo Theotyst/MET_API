@@ -1,8 +1,10 @@
 import React from "react"
 import styles from './PaginationComponent.module.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { updateCurrentPage } from '../../services/pagination/paginationSlice';
+import { updateCurrentPage, updateItemsPerPage } from '../../services/pagination/paginationSlice';
 import Pagination from 'react-bootstrap/Pagination'
+import Form from 'react-bootstrap/Form'
+
 
 
 const PaginationComponent = () => {
@@ -23,28 +25,21 @@ const PaginationComponent = () => {
         })
 
     return (
-        <div className={styles.PaginationComponent} data-testid="Pagination">
+        <div className={styles.paginationContainer} data-testid="Pagination">
             <Pagination>
-             <Pagination.First onClick={() => handleClick(1)} />
-             <Pagination.Prev onClick={() => handleClick(currentPage - 1)}/>
-             {items}
-             <Pagination.Next onClick={() => handleClick(currentPage + 1)} />
-             <Pagination.Last onClick={() => handleClick(pageCount)}/>
-             </Pagination>
+            <Pagination.First onClick={() => handleClick(1)} />
+            <Pagination.Prev onClick={() => handleClick(currentPage - 1)}/>
+            {items}
+            <Pagination.Next onClick={() => handleClick(currentPage + 1)} />
+            <Pagination.Last onClick={() => handleClick(pageCount)}/>
+            </Pagination>
+
+            <Form.Select className={styles.numberOfItemsSelect} aria-label="Select number of items per page" onChange={(event) => {dispatch(updateItemsPerPage(parseInt(event.target.value)))}}>
+                <option value="5">5</option>
+                <option value="10" selected="selected">10</option>
+                <option value="25">25</option>
+            </Form.Select> <label className={styles.numberOfItemsLabel}> items per page </label>
         </div>
-            // <Container>
-            //     <Row>
-            //         {pageItems}
-            //     </Row>
-            // </Container>
-            // <Container>
-            //     <Row>
-            //         <Col>
-                        
-            //         </Col>
-            //     </Row>
-            // </Container>
-        
     )
 }
 

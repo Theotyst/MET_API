@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { useState } from 'react'
 import styles from './FishRow.module.css'
 import Row from 'react-bootstrap/Row'
@@ -21,14 +21,39 @@ function retrieveImgData(gallery) {
 }
 
 const FishRow = ({fish}) => {
-  console.log(fish)
 
   const [detailsDisplayed, setDetailsDisplayed] = useState(false)
   const toggleDetails = () => setDetailsDisplayed(!detailsDisplayed);
 
+  useEffect(() =>  {
+    setDetailsDisplayed(false)
+  }, [fish])
+
   const details = (
-    <Col className={styles.details}>
-      coucou
+    <Col xs={12} className={styles.details}>
+      <Row>
+        <Col xs={6}>
+          <div className={styles.subtitle}> Description </div>
+          <div>{ReactHtmlParser(fish["Physical Description"])}</div>
+        </Col>
+        <Col xs={3}>
+          <div>
+            <img src={retrieveImgData(fish["Image Gallery"]).src} alt={retrieveImgData(fish["Image Gallery"]).alt} />
+          </div>
+        </Col>
+        <Col xs={3}>
+          <div className={styles.subtitle}> Food </div>
+          <ul>
+            <li> Serving weight : {fish["Serving Weight"]}</li>
+            <li> Calories : {fish["Calories"]}</li>
+            <li> Cholesterol : {fish["Cholesterol"]}</li>
+            <li> Sodium : {fish["Sodium"]}</li>
+            <li> Protein : {fish["Protein"]}</li>
+            <li> Fat : {fish["Fat, Total"]}</li>
+          </ul>
+        </Col>
+        
+      </Row>
     </Col>
   )
 

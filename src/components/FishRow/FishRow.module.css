@@ -1,16 +1,23 @@
-.FishRow:nth-child(even) {
-    background-color: #E2E2E2;
-} 
-
-.FishRow{
+.FishRow {
+    background-color: white;
     vertical-align: middle;
+    margin: 20px 0 20px 0;
+    padding: 10px;
+    border-radius: 5px;
 }
 .FishRow:hover{
-    background-color: lightblue;
+    background-color: #e9e5fb;
 }
 
-.FishRow.active {
-    border: 2px solid lightblue;
+.FishRow.active .details{
+    border: 5px solid #F3F5F9;
+}
+.FishRow:hover .details{
+    border: 5px solid white;
+}
+
+.FishRow p{
+    margin-top: revert;
 }
 
 .avatar {
@@ -23,4 +30,27 @@
 }
 
 .details {
+    background-color: white;
+    border-radius: 5px;
+    padding: 20px;
+    margin-top: 20px;
+}
+.details img{
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+.details ul {
+    padding-top: 10px;
+    list-style: circle;
+}
+
+.details li {
+    padding: 5px;
+}
+
+.subtitle {
+    font-family: Garamond;
+    font-weight: bold;
+    text-align: center;
 }

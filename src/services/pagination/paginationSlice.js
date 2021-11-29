@@ -23,16 +23,19 @@ export const paginationSlice = createSlice({
     },
     updateNumberOfItems(state, action) {
         state.numberOfItems = action.payload
+        paginationSlice.caseReducers.computePageCount(state)
         if (!state.currentPage) {
             state.currentPage = 1
+        } else if (state.currentPage > state.pageCount) {
+            state.currentPage = state.pageCount
         }
         paginationSlice.caseReducers.computeCurrentIndexes(state)
-        paginationSlice.caseReducers.computePageCount(state)
     },
     updateItemsPerPage(state, action) {
         state.itemsPerPage = action.payload
-        paginationSlice.caseReducers.computeCurrentIndexes(state)
         paginationSlice.caseReducers.computePageCount(state)
+        state.currentPage = 1
+        paginationSlice.caseReducers.computeCurrentIndexes(state)
     },
     updateCurrentPage(state, action) {
         state.currentPage = action.payload
